@@ -1,0 +1,20 @@
+web:
+  build: .
+  ports:
+   - "8000:80"
+  environment:
+   - DEBUG=True
+   - DALITE_DB_HOST=db
+   - DALITE_DB_USER=root
+   - DALITE_DB_PASSWORD=dalite
+   - LTI_CLIENT_KEY=dalite
+   - LTI_CLIENT_SECRET=dalite
+   - PASSWORD_GENERATOR_NONCE=random
+   - DJANGO_SETTINGS_MODULE=dalite.settings
+  links:
+   - db
+db:
+  image: mysql
+  environment:
+    - MYSQL_ROOT_PASSWORD=dalite
+    - MYSQL_DATABASE=dalite_ng
